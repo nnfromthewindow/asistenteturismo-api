@@ -28,4 +28,7 @@ public class SecurityConfig {
 				"/swagger-resources/**", 
 				"/swagger-ui/**");
     }
+    
+    
+    
 }
