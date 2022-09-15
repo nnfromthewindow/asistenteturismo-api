@@ -1,14 +1,20 @@
 package com.turismo.asistenteTurismo.model;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+
+
 
 @Entity
 public class Usuario implements UserDetails {
@@ -22,11 +28,13 @@ public class Usuario implements UserDetails {
 	private String username;
 	
 	private String password;	
+	
+	@ManyToMany(fetch = FetchType.EAGER)
+	private List<Perfil> perfiles = new ArrayList<Perfil>();
 
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
-		// TODO Auto-generated method stub
-		return null;
+		return this.perfiles;
 	}
 
 	@Override
