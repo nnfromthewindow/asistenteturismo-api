@@ -21,25 +21,25 @@ public class AutenticacionService implements UserDetailsService {
 
 	@Autowired
 	private UsuarioRepository usuarioRepository;
-	
+	/*
 	@Autowired
 	private AuthenticationManager authManager;
 	
 	@Autowired
 	private TokenService tokenService;
-	
+	*/
 	
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		Optional<Usuario> usuario = usuarioRepository.findByUsername(username);
 		return usuario.orElseThrow(() -> new UsernameNotFoundException("Datos inválidos"));
 	}
-	
+	/*
 	public String autenticarConToken(@Valid LoginForm loginForm) {
 		Authentication datosLogin = loginForm.convertir();
 		Authentication authentication = authManager.authenticate(datosLogin);
 		return tokenService.generarToken(authentication);
 	}
-
+*/
 }
  

@@ -21,7 +21,7 @@ import com.turismo.asistenteTurismo.repository.UsuarioRepository;
 @EnableWebSecurity
 
 public class SecurityConfig {
-	
+	/*
 	@Autowired
 	private AutenticacionService autenticacionService;
 	
@@ -30,16 +30,17 @@ public class SecurityConfig {
 	
 	@Autowired
 	private UsuarioRepository usuarioRepository;
-
+*/
 	
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
             .authorizeHttpRequests((authz) -> authz
             		.antMatchers(HttpMethod.GET,"/establecimiento").permitAll()
-                .anyRequest().authenticated().and().csrf().disable()
+                .anyRequest().authenticated()
+                /*.and().csrf().disable()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and().addFilterBefore(new AutenticacionPorTokenFilter(tokenService, usuarioRepository), UsernamePasswordAuthenticationFilter.class)
-                
+                */
             )
             .httpBasic();
         return http.build();

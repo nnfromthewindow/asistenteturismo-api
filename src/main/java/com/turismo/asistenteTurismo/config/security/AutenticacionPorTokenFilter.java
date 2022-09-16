@@ -18,8 +18,8 @@ import com.turismo.asistenteTurismo.repository.UsuarioRepository;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jws;
 
-public class AutenticacionPorTokenFilter extends OncePerRequestFilter {
-
+public class AutenticacionPorTokenFilter /*extends OncePerRequestFilter */{
+/*
 	private TokenService tokenService;
 	
 	private UsuarioRepository usuarioRepository;
@@ -65,5 +65,5 @@ public class AutenticacionPorTokenFilter extends OncePerRequestFilter {
 		
 		return tokenHeader.substring(comienzoToken.length() , tokenHeader.length());
 	}
-
+*/
 }
