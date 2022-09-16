@@ -1,48 +1,60 @@
 package com.turismo.asistenteTurismo.controller;
 
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.stream.Collectors;
+import javax.validation.Valid;
 
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.aspectj.bridge.Message;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.turismo.asistenteTurismo.config.security.TokenService;
+import com.turismo.asistenteTurismo.controller.dto.TokenDTO;
+import com.turismo.asistenteTurismo.controller.form.LoginForm;
+import com.turismo.asistenteTurismo.repository.UsuarioRepository;
 
 @RestController
 @RequestMapping("/auth")
 public class AutenticacionController {
 	
+    
+	private AuthenticationManagerBuilder authenticationManagerBuilder;
+    
+	private UsuarioRepository usuarioRepository;
 	
-	
-	@GetMapping
-    public Map<String,Object> getPrincipalInfo(JwtAuthenticationToken principal) {
-        
-        Collection<String> authorities = principal.getAuthorities()
-          .stream()
-          .map(GrantedAuthority::getAuthority)
-          .collect(Collectors.toList());
-        
-        Map<String,Object> info = new HashMap<>();
-        info.put("name", principal.getName());
-        info.put("authorities", authorities);
-        info.put("tokenAttributes", principal.getTokenAttributes());
-        
-        return info;
-    }
-	/*
-	@Autowired
-	private AutenticacionService autenticacionService;
-	
-	@PostMapping
-	public ResponseEntity<?> auth(@RequestBody @Valid LoginForm loginForm) {
-		try {
-			String token = autenticacionService.autenticarConToken(loginForm);
-			return ResponseEntity.ok(new TokenDTO(token, "Bearer "));
-		} catch (AuthenticationException e) {
-			return ResponseEntity.badRequest().build();
-		}
+	private TokenService tokenService;
+
+	public AutenticacionController(AuthenticationManagerBuilder authenticationManagerBuilder,
+			UsuarioRepository usuarioRepository, TokenService tokenService) {
+		super();
+		this.authenticationManagerBuilder = authenticationManagerBuilder;
+		this.usuarioRepository = usuarioRepository;
+		this.tokenService = tokenService;
 	}
-*/
+	
+	 @PostMapping
+	 public ResponseEntity<Object> login(@Valid @RequestBody LoginForm loginForm, BindingResult bidBindingResult){
+	        if(bidBindingResult.hasErrors())
+	            return new ResponseEntity<>(new Message("Revise sus credenciales"), HttpStatus.BAD_REQUEST);
+	        try {
+	                UsernamePasswordAuthenticationToken authenticationToken= new UsernamePasswordAuthenticationToken(loginUser.getUserName(), loginUser.getPassword());
+	                Authentication authentication = authenticationManagerBuilder.getObject().authenticate(authenticationToken);
+	                SecurityContextHolder.getContext().setAuthentication(authentication);
+	                String jwt = tokenService.generarToken(authentication);
+	                TokenDTO jwtDto = new TokenDTO(jwt);
+	                return new ResponseEntity<>(jwtDto, HttpStatus.OK);
+	        } catch (Exception e) {
+	                return new ResponseEntity<>(new Message("Revise sus credenciales"), HttpStatus.BAD_REQUEST);
+	        }
+	    }
+    
+	
+	
 }

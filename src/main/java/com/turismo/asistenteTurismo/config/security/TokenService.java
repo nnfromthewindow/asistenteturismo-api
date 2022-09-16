@@ -18,7 +18,8 @@ import io.jsonwebtoken.SignatureAlgorithm;
 
 @Service
 public class TokenService {
-/*	@Value("${forum.jwt.expirationTime}")
+	
+	@Value("${forum.jwt.expirationTime}")
 	private Long expirationTime;
 	
 	@Value("${forum.jwt.secret}")
@@ -52,5 +53,5 @@ public class TokenService {
 			return Optional.empty();
 		}
 	}
-*/
+
 }
