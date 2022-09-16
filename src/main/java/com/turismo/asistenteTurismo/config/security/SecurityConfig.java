@@ -1,5 +1,6 @@
 package com.turismo.asistenteTurismo.config.security;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
@@ -8,20 +9,37 @@ import org.springframework.security.config.annotation.authentication.configurati
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+
+import com.turismo.asistenteTurismo.repository.UsuarioRepository;
 
 @Configuration
 @EnableWebSecurity
 
 public class SecurityConfig {
 	
+	@Autowired
+	private AutenticacionService autenticacionService;
+	
+	@Autowired
+	private TokenService tokenService;
+	
+	@Autowired
+	private UsuarioRepository usuarioRepository;
+
+	
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
             .authorizeHttpRequests((authz) -> authz
             		.antMatchers(HttpMethod.GET,"/establecimiento").permitAll()
-                .anyRequest().authenticated()
+                .anyRequest().authenticated().and().csrf().disable()
+                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                .and().addFilterBefore(new AutenticacionPorTokenFilter(tokenService, usuarioRepository), UsernamePasswordAuthenticationFilter.class)
+                
             )
             .httpBasic();
         return http.build();
