@@ -47,12 +47,13 @@ public class AutenticacionController {
 	                Authentication authentication = authenticationManagerBuilder.getObject().authenticate(authenticationToken);
 	                SecurityContextHolder.getContext().setAuthentication(authentication);
 	                String jwt = tokenService.generarToken(authentication);
-	                TokenDTO jwtDto = new TokenDTO(jwt);
-	                System.out.println("EL TOKEN ES "+ jwtDto.getToken());
+	                TokenDTO jwtDto = new TokenDTO(jwt, "Bearer ");
+	          
 	                return new ResponseEntity<>(jwtDto, HttpStatus.OK);
 	        } catch (Exception e) {
 	                return new ResponseEntity<>(("Revise sus credenciales"), HttpStatus.BAD_REQUEST);
 	        }
+
 	    }
     
 	

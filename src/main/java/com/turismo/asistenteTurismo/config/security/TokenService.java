@@ -1,20 +1,21 @@
 package com.turismo.asistenteTurismo.config.security;
 
+import java.security.Key;
 import java.time.LocalDateTime;
-import java.time.ZoneId;
 import java.util.Date;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
-
-import com.turismo.asistenteTurismo.model.Usuario;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jws;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
+import io.jsonwebtoken.security.Keys;
+
 
 @Service
 public class TokenService {
@@ -28,6 +29,7 @@ public class TokenService {
 	@Value("${forum.jwt.issuer}")
 	private String issuer;
 
+	/*
 	public String generarToken(Authentication authentication) {
 		Usuario usuario = (Usuario) authentication.getPrincipal();
 		LocalDateTime ahora = LocalDateTime.now();
@@ -41,6 +43,21 @@ public class TokenService {
 				.signWith(SignatureAlgorithm.HS256, secret)
 				.compact();
 	}
+	*/
+	public String generarToken(Authentication authentication){
+		
+		Key key = Keys.secretKeyFor(SignatureAlgorithm.HS256);
+		//Usuario usuario = (Usuario) authentication.getPrincipal();
+		LocalDateTime ahora = LocalDateTime.now();
+		LocalDateTime expiracion = ahora.plusMinutes(expirationTime);
+	      
+        UserDetails mainUser = (UserDetails) authentication.getPrincipal();
+        return Jwts.builder().setSubject(mainUser.getUsername())
+        .setIssuedAt(new Date())
+        .setExpiration(new Date(new Date().getTime() + 1000 *1000))
+        .signWith(key)
+        .compact();
+    }
 
 	public Optional<Jws<Claims>> getTokenInfo(String token) {
 		try {
