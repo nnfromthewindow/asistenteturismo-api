@@ -41,16 +41,17 @@ public class AutenticacionController {
 	 @PostMapping
 	 public ResponseEntity<Object> login(@Valid @RequestBody LoginForm loginForm, BindingResult bidBindingResult){
 	        if(bidBindingResult.hasErrors())
-	            return new ResponseEntity<>(new Message("Revise sus credenciales", null, true), HttpStatus.BAD_REQUEST);
+	            return new ResponseEntity<>(("Revise sus credenciales"), HttpStatus.BAD_REQUEST);
 	        try {
 	                UsernamePasswordAuthenticationToken authenticationToken= new UsernamePasswordAuthenticationToken(loginForm.getUsername(), loginForm.getPassword());
 	                Authentication authentication = authenticationManagerBuilder.getObject().authenticate(authenticationToken);
 	                SecurityContextHolder.getContext().setAuthentication(authentication);
 	                String jwt = tokenService.generarToken(authentication);
 	                TokenDTO jwtDto = new TokenDTO(jwt);
+	                System.out.println("EL TOKEN ES "+ jwtDto.getToken());
 	                return new ResponseEntity<>(jwtDto, HttpStatus.OK);
 	        } catch (Exception e) {
-	                return new ResponseEntity<>(new Message("Revise sus credenciales",null, true), HttpStatus.BAD_REQUEST);
+	                return new ResponseEntity<>(("Revise sus credenciales"), HttpStatus.BAD_REQUEST);
 	        }
 	    }
     
