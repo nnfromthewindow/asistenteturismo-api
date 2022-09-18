@@ -32,20 +32,22 @@ public class AutenticacionPorTokenFilter extends OncePerRequestFilter {
 			FilterChain filterChain)
 			throws ServletException, IOException {
 		String token = recuperarToken(request);
-		
+
 		validaAndAutenticaCliente(token);
 		
 		filterChain.doFilter(request, response);
 	
 	}
 	private void validaAndAutenticaCliente(String token) {
+		
 		Optional<Jws<Claims>> optClaims = tokenService.getTokenInfo(token);
-
+		
 		optClaims.ifPresent(claims -> {
+			
 			long idUsuario = Long.parseLong(claims.getBody().getSubject());
-
+			
 			Usuario usuario = usuarioRepository.findById(idUsuario).get();
-
+			
 			UsernamePasswordAuthenticationToken autenticacionPorToken = new UsernamePasswordAuthenticationToken(usuario,
 					null, usuario.getAuthorities());
 			SecurityContextHolder.getContext().setAuthentication(autenticacionPorToken);

@@ -2,6 +2,7 @@ package com.turismo.asistenteTurismo.config.security;
 
 import java.security.Key;
 import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.Date;
 import java.util.Optional;
 
@@ -9,6 +10,8 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
+
+import com.turismo.asistenteTurismo.model.Usuario;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jws;
@@ -20,53 +23,42 @@ import io.jsonwebtoken.security.Keys;
 @Service
 public class TokenService {
 	
-	@Value("${forum.jwt.expirationTime}")
+	@Value("${asistenteTurismo.jwt.expirationTime}")
 	private Long expirationTime;
 	
-	@Value("${forum.jwt.secret}")
+	@Value("${asistenteTurismo.jwt.secret}")
 	private String secret;
 	
-	@Value("${forum.jwt.issuer}")
+	@Value("${asistenteTurismo.jwt.issuer}")
 	private String issuer;
 
-	/*
-	public String generarToken(Authentication authentication) {
-		Usuario usuario = (Usuario) authentication.getPrincipal();
-		LocalDateTime ahora = LocalDateTime.now();
-		LocalDateTime expiracion = ahora.plusMinutes(expirationTime);
-		
-		return Jwts.builder()
-				.setIssuer(issuer)
-				.setSubject(usuario.getId().toString())
-				.setIssuedAt(Date.from(ahora.atZone(ZoneId.systemDefault()).toInstant()))
-				.setExpiration(Date.from(expiracion.atZone(ZoneId.systemDefault()).toInstant()))
-				.signWith(SignatureAlgorithm.HS256, secret)
-				.compact();
-	}
-	*/
+	Key key = Keys.secretKeyFor(SignatureAlgorithm.HS256);
+
 	public String generarToken(Authentication authentication){
 		
-		Key key = Keys.secretKeyFor(SignatureAlgorithm.HS256);
-		//Usuario usuario = (Usuario) authentication.getPrincipal();
+
 		LocalDateTime ahora = LocalDateTime.now();
 		LocalDateTime expiracion = ahora.plusMinutes(expirationTime);
 	      
-        UserDetails mainUser = (UserDetails) authentication.getPrincipal();
-        return Jwts.builder().setSubject(mainUser.getUsername())
-        .setIssuedAt(new Date())
-        .setExpiration(new Date(new Date().getTime() + 1000 *1000))
+        Usuario mainUser = (Usuario) authentication.getPrincipal();
+        return Jwts.builder().setSubject(mainUser.getId().toString())
+        .setIssuedAt(Date.from(ahora.atZone(ZoneId.systemDefault()).toInstant()))
+        .setExpiration(Date.from(expiracion.atZone(ZoneId.systemDefault()).toInstant()))
         .signWith(key)
         .compact();
     }
 
 	public Optional<Jws<Claims>> getTokenInfo(String token) {
 		try {
-			Jws<Claims> claims = Jwts.parser()
-				.setSigningKey(secret)
-				.parseClaimsJws(token);
+			
+			Jws<Claims> claims = Jwts.parserBuilder()
+					.setSigningKey(key)
+					.build()
+					.parseClaimsJws(token);
 			
 			return Optional.of(claims);
 		} catch(Exception e) {
+	
 			return Optional.empty();
 		}
 	}
