@@ -3,7 +3,6 @@ package com.turismo.asistenteTurismo.config.security;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
@@ -37,10 +36,10 @@ public class SecurityConfig {
 	
     @Bean
     public WebSecurityCustomizer webSecurityCustomizer() {
-        return (web) -> web.ignoring().antMatchers( "/h2-console/**","/v3/api-docs",
+        return (web) -> web.ignoring().antMatchers(/* "/h2-console/**","/v3/api-docs",
 				"/v2/api-docs",
 				"/swagger-resources/**", 
-				"/swagger-ui/**");
+				"/swagger-ui/**"*/);
     }
     
     @Bean

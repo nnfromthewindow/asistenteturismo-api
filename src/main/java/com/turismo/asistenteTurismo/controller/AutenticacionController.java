@@ -2,7 +2,6 @@ package com.turismo.asistenteTurismo.controller;
 
 import javax.validation.Valid;
 
-import org.aspectj.bridge.Message;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;

@@ -50,7 +50,7 @@ public class EstablecimientoController {
 	}
 	
 	
-	@PostMapping
+	@PostMapping("/registrar")
 	public ResponseEntity<EstablecimientoDTO> registrar(@RequestBody @Valid EstablecimientoForm establecimientoForm, 
 														UriComponentsBuilder uriComponentsBuilder) {
 		Establecimiento establecimiento = establecimientoService.registrar(establecimientoForm);

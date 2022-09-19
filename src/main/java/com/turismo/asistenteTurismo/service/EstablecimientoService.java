@@ -41,9 +41,7 @@ public class EstablecimientoService {
 	
 	@CacheEvict(value = "listaEstablecimiento", allEntries = true)
 	public Establecimiento registrar(@Valid EstablecimientoForm establecimientoForm) {
-		//Optional<Usuario> usuario = usuarioRepository.findById(topicoForm.getIdUsuario());
-		//Optional<Establecimiento> establecimiento = establecimientoRepository.findByNombre(establecimientoForm.getNombre());
-		
+	
 		Establecimiento establecimiento = establecimientoForm.convertir();
 		
 		return establecimientoRepository.save(establecimiento);
