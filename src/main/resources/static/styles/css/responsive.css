@@ -1,0 +1,8 @@
+@media only screen and (max-width: 577px) {
+  .footer-img-container {
+    flex-direction: column;
+  }
+  .img-footer {
+    margin: 0 auto;
+  }
+}

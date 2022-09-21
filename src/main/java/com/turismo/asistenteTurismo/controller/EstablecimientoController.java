@@ -1,6 +1,5 @@
 package com.turismo.asistenteTurismo.controller;
 
-import java.io.IOException;
 import java.net.URI;
 
 import javax.validation.Valid;
@@ -12,7 +11,6 @@ import org.springframework.data.domain.Sort.Direction;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -38,33 +36,25 @@ public class EstablecimientoController {
 		
 	@Autowired	
 	private EstablecimientoService establecimientoService;
-	/*
+	
 	@GetMapping
 	public ResponseEntity<Page<EstablecimientoDTO>> listado(
 			@RequestParam(required = false) String nombre,
-			@PageableDefault(page = 0, size = 10,
+			@PageableDefault(page = 0, size = 3,
 			sort = "id", direction = Direction.DESC) Pageable pageable) {
+	
+
 		return ResponseEntity.ok(establecimientoService.listado(nombre, pageable));
 	}
-	*/
-	@GetMapping
-	public String listado(
-			@RequestParam(required = false) String nombre,
-			@PageableDefault(page = 0, size = 10,
-			sort = "id", direction = Direction.DESC) Pageable pageable, Model model) {
 
-		model.addAttribute("nombre", nombre);
-		 ResponseEntity.ok(establecimientoService.listado(nombre, pageable));
-		 return "index";
-	}
-	
 	@GetMapping("/{id}")
 	public ResponseEntity<DetalleEstablecimientoDTO> detalle(@PathVariable Long id) {
+		
+		
 		DetalleEstablecimientoDTO detalle = establecimientoService.detalle(id);
 		
 		return ResponseEntity.ok(detalle);
 	}
-	
 	
 	@PostMapping("/registrar")
 	public ResponseEntity<EstablecimientoDTO> registrar(@RequestBody @Valid EstablecimientoForm establecimientoForm, 
@@ -91,5 +81,6 @@ public class EstablecimientoController {
 		return ResponseEntity.ok().build();
 	}
 	
+
 }
  	

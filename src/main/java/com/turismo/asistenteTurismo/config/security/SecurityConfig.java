@@ -36,7 +36,7 @@ public class SecurityConfig {
 	
     @Bean
     public WebSecurityCustomizer webSecurityCustomizer() {
-        return (web) -> web.ignoring().antMatchers(/* "/h2-console/**","/v3/api-docs",
+        return (web) -> web.ignoring().antMatchers("/**/*.js", "/**/*.css", "/**/*.png", "/**/*.jpg"/* "/h2-console/**","/v3/api-docs",
 				"/v2/api-docs",
 				"/swagger-resources/**", 
 				"/swagger-ui/**"*/);
@@ -51,9 +51,9 @@ public class SecurityConfig {
     SecurityFilterChain filterChain(HttpSecurity http) throws Exception{
         http.cors().and().csrf().disable()
         .authorizeRequests()
-        .antMatchers("/auth/**")
+        .antMatchers("/login/**")
         .permitAll()
-        .antMatchers("/establecimiento/**")
+        .antMatchers("/establecimiento")
         .permitAll()
         .anyRequest().authenticated()
         .and()

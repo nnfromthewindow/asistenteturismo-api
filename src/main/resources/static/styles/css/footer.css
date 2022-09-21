@@ -1,0 +1,12 @@
+.footer {
+  background-color: darkgray;
+}
+
+.footer-img-container {
+  display: flex;
+  justify-content: space-around;
+}
+.img-footer {
+  object-fit: contain;
+  width: 13rem;
+}

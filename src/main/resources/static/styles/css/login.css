@@ -1,0 +1,83 @@
+.login {
+  background-image: url(/styles/img/El-agujerito-x500-1180x393.jpg);
+  object-fit: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  height: fit-content;
+  padding-top: 15vh;
+  width: 100%;
+}
+.loginContainer {	
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 2rem;
+}
+.loginContainer a {
+  margin: 0 auto;
+  width: 25%;
+  min-height: 41px;
+  min-width: 275px;
+}
+.loginContainer button {
+  background-color: #2a7ae4;
+  border-style: none;
+  color: white;
+  font-family: "Raleway", sans-serif;
+  font-size: 18px;
+  font-weight: 400;
+  height: 3vw;
+  margin: 0 auto;
+  min-height: 41px;
+  min-width: 275px;
+  outline: none;
+  width: 100%;
+}
+
+.loginContainer button:active {
+  background-color: #2a6aff;
+}
+
+.loginTitle {
+  color: #ffffff;
+  font-family: "Raleway", sans-serif;
+  font-size: 26px;
+  font-weight: 700;
+  margin: 0 auto;
+  padding-bottom: 2vh;
+  text-shadow: 1px 2px black;
+  width: fit-content;
+}
+
+.loginInput {
+  border-style: none;
+  color: #464646;
+  font-family: "Raleway", sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  margin: 0 auto;
+  margin-bottom: 2vh;
+  min-height: 41px;
+  min-width: 275px;
+  height: 3vw;
+  padding-left: 10px;
+  width: 25%;
+  outline: none;
+}
+
+.loginInput:focus {
+  border-bottom: 2px solid #2a7be48c;
+  border-left: 2px solid none;
+  border-right: 2px solid none;
+  border-top: 2px solid none;
+}
+.registrese {
+  color: #ffffff;
+  font-family: "Raleway", sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  margin: 0 auto;
+  padding-top: 2vh;
+  text-shadow: 1px 2px black;
+  width: fit-content;
+}

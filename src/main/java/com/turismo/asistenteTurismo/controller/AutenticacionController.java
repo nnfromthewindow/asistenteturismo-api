@@ -8,19 +8,22 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 
 import com.turismo.asistenteTurismo.config.security.TokenService;
 import com.turismo.asistenteTurismo.controller.dto.TokenDTO;
 import com.turismo.asistenteTurismo.controller.form.LoginForm;
 import com.turismo.asistenteTurismo.repository.UsuarioRepository;
 
-@RestController
-@RequestMapping("/auth")
+
+@Controller
+@RequestMapping("/login")
 public class AutenticacionController {
 	
     
@@ -35,6 +38,12 @@ public class AutenticacionController {
 		this.authenticationManagerBuilder = authenticationManagerBuilder;
 		this.usuarioRepository = usuarioRepository;
 		this.tokenService = tokenService;
+	}
+	
+	@GetMapping
+	public String cargaLogin(Model model) {
+		
+		return"login";
 	}
 	
 	 @PostMapping
