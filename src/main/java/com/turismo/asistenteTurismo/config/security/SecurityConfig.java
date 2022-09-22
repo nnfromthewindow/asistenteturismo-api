@@ -36,10 +36,10 @@ public class SecurityConfig {
 	
     @Bean
     public WebSecurityCustomizer webSecurityCustomizer() {
-        return (web) -> web.ignoring().antMatchers("/**/*.js", "/**/*.css", "/**/*.png", "/**/*.jpg"/* "/h2-console/**","/v3/api-docs",
+        return (web) -> web.ignoring().antMatchers("/**/*.js", "/**/*.css", "/**/*.png", "/**/*.jpg", "/h2-console/**","/v3/api-docs",
 				"/v2/api-docs",
 				"/swagger-resources/**", 
-				"/swagger-ui/**"*/);
+				"/swagger-ui/**");
     }
     
     @Bean
@@ -53,7 +53,7 @@ public class SecurityConfig {
         .authorizeRequests()
         .antMatchers("/login/**")
         .permitAll()
-        .antMatchers("/establecimiento")
+        .antMatchers("/establecimiento/**")
         .permitAll()
         .anyRequest().authenticated()
         .and()

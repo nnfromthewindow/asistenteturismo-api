@@ -33,12 +33,12 @@ public class AutenticacionPorTokenFilter extends OncePerRequestFilter {
 			throws ServletException, IOException {
 		String token = recuperarToken(request);
 
-		validaAndAutenticaCliente(token);
+		validaAndAutenticaUsuario(token);
 		
 		filterChain.doFilter(request, response);
 	
 	}
-	private void validaAndAutenticaCliente(String token) {
+	private void validaAndAutenticaUsuario(String token) {
 		
 		Optional<Jws<Claims>> optClaims = tokenService.getTokenInfo(token);
 		

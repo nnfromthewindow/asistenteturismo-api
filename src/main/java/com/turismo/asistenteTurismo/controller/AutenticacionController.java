@@ -9,9 +9,7 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -39,13 +37,7 @@ public class AutenticacionController {
 		this.usuarioRepository = usuarioRepository;
 		this.tokenService = tokenService;
 	}
-	
-	@GetMapping
-	public String cargaLogin(Model model) {
-		
-		return"login";
-	}
-	
+
 	 @PostMapping
 	 public ResponseEntity<Object> login(@Valid @RequestBody LoginForm loginForm, BindingResult bidBindingResult){
 	        if(bidBindingResult.hasErrors())
@@ -64,6 +56,6 @@ public class AutenticacionController {
 
 	    }
     
-	
-	
+    
+
 }

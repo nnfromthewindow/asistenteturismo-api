@@ -3,6 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Asistente de Turismo - Login</title>
     <link th:href="@{/styles/css/normalize.css}" rel="stylesheet" />
@@ -19,7 +20,7 @@
   </head>
   <body>
     <section class="login">
-      <form class="loginContainer" id="formLogin" method="POST" action="login">
+      <form class="loginContainer" id="formLogin" method="post" action="#" th:action="@{/login}" th:object="${loginForm}">
         <h2 class="loginTitle">Iniciar Sesión</h2>
         <input
           type="text"
