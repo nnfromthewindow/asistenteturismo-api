@@ -66,8 +66,11 @@ public class EstablecimientoController {
 		model.addAttribute("direccion",detalle.getDireccion());
 		model.addAttribute("telefono",detalle.getTelefono());
 		model.addAttribute("paginaInternet",detalle.getPaginaInternet());
-		model.addAttribute("tipoEstablecimiento",detalle.getTipoEstablecimiento());
-		model.addAttribute("localidad",detalle.getLocalidad());
+		model.addAttribute("tipoEstablecimiento",detalle.getTipoEstablecimiento().toString());
+		model.addAttribute("localidad",detalle.getLocalidad().toString());
+		model.addAttribute("foto1",detalle.getFoto1());
+		model.addAttribute("foto2",detalle.getFoto2());
+		model.addAttribute("foto3",detalle.getFoto3());
 		return "detail";
 	}
 	@PostMapping

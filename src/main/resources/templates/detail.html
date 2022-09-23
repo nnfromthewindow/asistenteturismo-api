@@ -4,13 +4,13 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Detalle del establecimiento</title>
-    <link href="./assets/css/normalize.css" rel="stylesheet" />
-    <link href="./assets/css/reset.css" rel="stylesheet" />
-    <link href="./assets/css/login.css" rel="stylesheet" />
-    <link href="./assets/css/footer.css" rel="stylesheet" />
-    <link href="./assets/css/detail.css" rel="stylesheet" />
-    <link href="./assets/css/responsive.css" rel="stylesheet" />
+    <title th:text="'Detalle del establecimiento - '+${nombre}"></title>
+    <link th:href="@{/styles/css/normalize.css}" rel="stylesheet" />
+    <link th:href="@{/styles/css/reset.css}" rel="stylesheet" />
+    <link th:href="@{/styles/css/login.css}" rel="stylesheet" />
+    <link th:href="@{/styles/css/footer.css}" rel="stylesheet" />
+    <link th:href="@{/styles/css/responsive.css}" rel="stylesheet" />
+     <link th:href="@{/styles/css/detail.css}" rel="stylesheet" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -26,7 +26,8 @@
   </head>
   <body>
     <section class="principal">
-      <h1 class="nombre-establecimiento">Establecimiento Nombre ${nombre}</h1>
+      <h1 class="nombre-establecimiento" th:text="${nombre}"></h1>
+      
       <div class="carousel-fotos">
         <div
           id="carouselExampleFade"
@@ -36,23 +37,23 @@
           <div class="carousel-inner">
             <div class="carousel-item active">
               <img
-                src="/assets/img/cropped-Municipio-Logo-PNG-VEN.png"
+                th:src="${foto1}"
                 class="d-block w-100"
-                alt="..."
+                alt="Foto 1"
               />
             </div>
             <div class="carousel-item">
               <img
-                src="/assets/img/El-agujerito-x500-1180x393.jpg"
+                th:src="${foto2}"
                 class="d-block w-100"
-                alt="..."
+                alt="Foto 2"
               />
             </div>
             <div class="carousel-item">
               <img
-                src="/assets/img/ventanialogo.png"
+                th:src="${foto3}"
                 class="d-block w-100"
-                alt="..."
+                alt="Foto 3"
               />
             </div>
           </div>
@@ -79,32 +80,48 @@
           </button>
         </div>
       </div>
-    </section>
-    <section class="descripcion">
-      <div class="card" style="width: 18rem">
-        <ul class="list-group list-group-flush">
-          <li class="list-group-item">An item</li>
-          <li class="list-group-item">A second item</li>
-          <li class="list-group-item">A third item</li>
-          <li class="list-group-item">An item</li>
-          <li class="list-group-item">A second item</li>
-          <li class="list-group-item">A third item</li>
+   
+    <div class="descripcion">
+      <div class="card"  >
+        <ul class="list-group list-group-flush" >
+          <li class="list-group-item" style="background-color: #babab961" th:text="${descripcion}" > </li>
+          <li class="list-group-item"  ><p th:text="'Direccion: '+${direccion}" ></p> </li>
+          <li class="list-group-item" ><p  th:text="'Telefono: '+${telefono}" ></p> </li>
+          <li class="list-group-item"><p>Sitio Web: <a th:text="${paginaInternet}" th:href="${paginaInternet}"></a></p> </li>
+          <li class="list-group-item"  th:switch="${tipoEstablecimiento}">
+           <p th:case="CABAÑA">Tipo de Establecimiento: Cabaña</p>
+           <p th:case="HOTEL">Tipo de Establecimiento: Hotel</p>
+           <p th:case="HOSTEL">Tipo de Establecimiento: Hostel</p>
+           <p th:case="DEPARTAMENTO">Tipo de Establecimiento: Departamento</p>
+           <p th:case="CASA">Tipo de Establecimiento: Casa</p>
+           <p th:case="CAMPING">Tipo de Establecimiento: Camping</p>
+           <p th:case="CASA_DE_CAMPO">Tipo de Establecimiento: Casa de Campo</p>
+          </li>
+          <li class="list-group-item"  th:switch="${localidad}">
+           <p th:case="SIERRA_DE_LA_VENTANA">Sierra de la Ventana</p>
+           <p th:case="TORNQUIST">Tornquist</p>
+           <p th:case="SALDUNGARAY">Saldungaray</p>
+           <p th:case="VILLA_VENTANA">Villa Ventana</p>
+           <p th:case="LA_GRUTA">La Gruta</p>
+          </li>
         </ul>
       </div>
+     </div>
     </section>
     <footer class="footer">
       <div class="footer-img-container">
         <img
           class="img-footer"
-          src="/assets/img/municipiologo.png"
+          src="/styles/img/municipiologo.png"
           alt="Logo Municipio Tornquist"
         />
         <img
           class="img-footer"
-          src="/assets/img/ventanialogo.png"
+          src="/styles/img/ventanialogo.png"
           alt="Logo Ventania"
         />
       </div>
+      <h4>Desarrollado por Nicolás Nuccelli</h4>
     </footer>
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"

@@ -8,6 +8,8 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 
 @Entity
@@ -16,24 +18,33 @@ public class Establecimiento {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
+	@NotNull
 	private String nombre;
 	
+	@Size(max = 1000 )@NotNull
 	private String descripcion;
 	
+	@NotNull
 	private String direccion;
 	
+	@NotNull
 	private Integer telefono;
 	
 	private String paginaInternet;
 	
 	private LocalDateTime fechaRegistro = LocalDateTime.now();
 	
-	@Enumerated(EnumType.STRING)
+	@Enumerated(EnumType.STRING)@NotNull
 	private TipoEstablecimiento tipoEstablecimiento;
 	
-	@Enumerated(EnumType.STRING)
+	@Enumerated(EnumType.STRING)@NotNull
 	private Localidad localidad;
+	
+	private String foto1;
+	
+	private String foto2;
+	
+	private String foto3;
 	
 	public Establecimiento() {
 		
@@ -43,7 +54,7 @@ public class Establecimiento {
 
 	public Establecimiento(String nombre, String descripcion, String direccion, Integer telefono,
 			String paginaInternet, TipoEstablecimiento tipoEstablecimiento,
-			 Localidad localidad  ) {
+			 Localidad localidad, String foto1, String foto2, String foto3  ) {
 		
 		this.nombre = nombre;
 		this.descripcion = descripcion;
@@ -52,7 +63,9 @@ public class Establecimiento {
 		this.paginaInternet = paginaInternet;
 		this.tipoEstablecimiento = tipoEstablecimiento;
 		this.localidad = localidad;
-		 
+		this.foto1 = foto1;
+		this.foto2 = foto2;
+		this.foto3 = foto3;
 	}
 
 
@@ -127,6 +140,30 @@ public class Establecimiento {
 
 	public void setLocalidad(Localidad localidad) {
 		this.localidad = localidad;
+	}
+
+	public String getFoto1() {
+		return foto1;
+	}
+
+	public void setFoto1(String foto1) {
+		this.foto1 = foto1;
+	}
+
+	public String getFoto2() {
+		return foto2;
+	}
+
+	public void setFoto2(String foto2) {
+		this.foto2 = foto2;
+	}
+
+	public String getFoto3() {
+		return foto3;
+	}
+
+	public void setFoto3(String foto3) {
+		this.foto3 = foto3;
 	}
 
 	

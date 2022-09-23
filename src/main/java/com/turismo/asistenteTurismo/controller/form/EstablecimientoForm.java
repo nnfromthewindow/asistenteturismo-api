@@ -2,6 +2,8 @@ package com.turismo.asistenteTurismo.controller.form;
 
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 
 import com.turismo.asistenteTurismo.model.Establecimiento;
 import com.turismo.asistenteTurismo.model.Localidad;
@@ -9,24 +11,29 @@ import com.turismo.asistenteTurismo.model.TipoEstablecimiento;
 
 public class EstablecimientoForm {
 	
+	@NotBlank
 	private String nombre;
-	
+	@NotBlank @Size(max = 1000 )
 	private String descripcion;
-	
+	@NotBlank
 	private String direccion;
-	
+	@NotBlank
 	private Integer telefono;
 	
 	private String paginaInternet;
-	
-	//private LocalDateTime fechaRegistro = LocalDateTime.now();
-	
+	@NotBlank
 	@Enumerated(EnumType.STRING)
 	private TipoEstablecimiento tipoEstablecimiento;
-	
+	@NotBlank
 	@Enumerated(EnumType.STRING)
 	private Localidad localidad;
 
+	private String foto1;
+	
+	private String foto2;
+	
+	private String foto3;
+	
 	public String getNombre() {
 		return nombre;
 	}
@@ -83,8 +90,32 @@ public class EstablecimientoForm {
 		this.localidad = localidad;
 	}
 	
+	public String getFoto1() {
+		return foto1;
+	}
+
+	public void setFoto1(String foto1) {
+		this.foto1 = foto1;
+	}
+
+	public String getFoto2() {
+		return foto2;
+	}
+
+	public void setFoto2(String foto2) {
+		this.foto2 = foto2;
+	}
+
+	public String getFoto3() {
+		return foto3;
+	}
+
+	public void setFoto3(String foto3) {
+		this.foto3 = foto3;
+	}
+
 	public  Establecimiento convertir() {
-		return new Establecimiento(nombre, descripcion, direccion, telefono, paginaInternet, tipoEstablecimiento,localidad);
+		return new Establecimiento(nombre, descripcion, direccion, telefono, paginaInternet, tipoEstablecimiento,localidad,foto1,foto2,foto3);
 	}
 	
 

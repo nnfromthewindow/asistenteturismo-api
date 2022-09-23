@@ -1,5 +1,5 @@
 INSERT INTO USUARIO(username, password)VALUES('nico','$2a$10$SotYb9UC/J52IdAdFPLhFuKwLGbnGQheWRQ.AU2f/xzAh4TTAyaz.');
-INSERT INTO ESTABLECIMIENTO(nombre, descripcion, direccion, telefono, pagina_internet, fecha_registro, tipo_establecimiento, localidad) 
-VALUES('La Facilidad', 'Complejo de cabañas re lindas', 'del arroyo323', '23123143', 'http://lafacilidad.com.ar', '2015-12-11', 'CABAÑA', 'SIERRA_DE_LA_VENTANA');
+INSERT INTO ESTABLECIMIENTO(nombre, descripcion, direccion, telefono, pagina_internet, fecha_registro, tipo_establecimiento, localidad,foto1, foto2, foto3) 
+VALUES('La Facilidad', ' La cabaña serena cuenta con hall de recepción, estar, comedor, cocina completa, habitación suite con cama king size, dos sofá cama en el estar, ante baño, baño, hidromasajes doble circular y cochera cubierta privada con parrilla.En su equipamiento se destacan, aire acondicionado f/c, 2 SMART TV LED 42” y Wifi. Servicios: Ropa blanca, servicio de mucama y medialunas en la cabaña, además, contamos con grupo electrógeno que abastece todas las necesidades eléctricas del complejo.', 'San Martin 120', '23123143', 'http://lafacilidad.com.ar', '2015-12-11', 'CABAÑA', 'SIERRA_DE_LA_VENTANA', 'https://sierraserena.com/wp-content/uploads/2019/11/MG_3081f-copia-min-1.jpg','https://media-cdn.tripadvisor.com/media/photo-s/09/4f/a4/a2/sierra-serena.jpg','https://sierraserena.com/wp-content/uploads/2019/11/MG_3165f-copia-min.jpg');
 
 

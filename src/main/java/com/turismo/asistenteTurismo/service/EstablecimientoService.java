@@ -87,6 +87,9 @@ public class EstablecimientoService {
 		establecimiento.setPaginaInternet(actualizaEstablecimientoForm.getPaginaInternet());
 		establecimiento.setTipoEstablecimiento(actualizaEstablecimientoForm.getTipoEstablecimiento());
 		establecimiento.setLocalidad(actualizaEstablecimientoForm.getLocalidad());
+		establecimiento.setFoto1(actualizaEstablecimientoForm.getFoto1());
+		establecimiento.setFoto2(actualizaEstablecimientoForm.getFoto2());
+		establecimiento.setFoto3(actualizaEstablecimientoForm.getFoto3());
 		
 		return establecimiento;
 	}

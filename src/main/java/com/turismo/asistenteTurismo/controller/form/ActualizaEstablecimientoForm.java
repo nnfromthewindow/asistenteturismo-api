@@ -22,6 +22,12 @@ public class ActualizaEstablecimientoForm {
 	private TipoEstablecimiento tipoEstablecimiento;
 
 	private Localidad localidad;
+	
+	private String foto1;
+	
+	private String foto2;
+	
+	private String foto3;
 
 	public String getNombre() {
 		return nombre;
@@ -85,6 +91,30 @@ public class ActualizaEstablecimientoForm {
 
 	public void setLocalidad(Localidad localidad) {
 		this.localidad = localidad;
+	}
+
+	public String getFoto1() {
+		return foto1;
+	}
+
+	public void setFoto1(String foto1) {
+		this.foto1 = foto1;
+	}
+
+	public String getFoto2() {
+		return foto2;
+	}
+
+	public void setFoto2(String foto2) {
+		this.foto2 = foto2;
+	}
+
+	public String getFoto3() {
+		return foto3;
+	}
+
+	public void setFoto3(String foto3) {
+		this.foto3 = foto3;
 	}
 
 }

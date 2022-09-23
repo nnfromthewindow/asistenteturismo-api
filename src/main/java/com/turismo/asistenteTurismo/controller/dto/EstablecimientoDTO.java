@@ -26,6 +26,12 @@ public class EstablecimientoDTO {
 	
 	private Localidad localidad;
 	
+	private String foto1;
+	
+	private String foto2;
+	
+	private String foto3;
+	
 	public EstablecimientoDTO(Establecimiento establecimiento) {
 		this.id = establecimiento.getId();
 		this.nombre = establecimiento.getNombre();
@@ -36,6 +42,9 @@ public class EstablecimientoDTO {
 		this.fechaRegistro = establecimiento.getFechaRegistro();
 		this.tipoEstablecimiento = establecimiento.getTipoEstablecimiento();
 		this.localidad = establecimiento.getLocalidad();
+		this.foto1 = establecimiento.getFoto1();
+		this.foto2 = establecimiento.getFoto2();
+		this.foto3 = establecimiento.getFoto3();
 	}
 
 	public Long getId() {
@@ -72,6 +81,18 @@ public class EstablecimientoDTO {
 
 	public Localidad getLocalidad() {
 		return localidad;
+	}
+
+	public String getFoto1() {
+		return foto1;
+	}
+
+	public String getFoto2() {
+		return foto2;
+	}
+
+	public String getFoto3() {
+		return foto3;
 	}
 
 	public static Page<EstablecimientoDTO> convertir(Page<Establecimiento> establecimientos) {

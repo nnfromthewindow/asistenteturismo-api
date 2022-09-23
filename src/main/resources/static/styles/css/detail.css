@@ -1,9 +1,20 @@
+
+.principal{
+
+    background-color: #b1969636;
+	
+}
+
 .card {
-  width: 50%;
+  width: 70%;
   margin: 0 auto;
+   
 }
 
 .nombre-establecimiento {
+	    background-color: #a9a9a938;
+	font-family: 'Raleway', sans-serif;
+	font-size:3em;
   text-align: center;
   padding: 2rem;
 }
@@ -11,13 +22,37 @@
 .carousel-fotos {
   width: 80%;
   margin: 0 auto;
+  padding-top: 2rem;
 }
 .w-100 {
-  width: 80vw !important;
-  height: 50vw;
-  object-fit: contain;
+
+    width: 90%!important;
+    margin: 0 auto;
+    object-fit: contain;
+
 }
 
 .descripcion {
+  padding-top: 2rem;
   padding-bottom: 2rem;
+}
+
+.list-group-item {
+
+	color: #6c757d;
+	font-family: 'Raleway', sans-serif;
+	font-size: 1em;	
+}
+.list-group {
+
+	color: #6c757d;
+	font-family: 'Raleway', sans-serif;
+	font-size: 1em;	
+}
+
+footer h4{
+	font-family: 'Raleway', sans-serif;
+	font-size:0.9em;
+	padding-bottom: 1rem;
+	text-align: center;	
 }
