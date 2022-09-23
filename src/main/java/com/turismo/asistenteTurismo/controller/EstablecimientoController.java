@@ -11,6 +11,7 @@ import org.springframework.data.domain.Sort.Direction;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -46,7 +47,7 @@ public class EstablecimientoController {
 
 		return ResponseEntity.ok(establecimientoService.listado(nombre, pageable));
 	}
-
+/*
 	@GetMapping("/{id}")
 	public ResponseEntity<DetalleEstablecimientoDTO> detalle(@PathVariable Long id) {
 		
@@ -55,7 +56,20 @@ public class EstablecimientoController {
 		
 		return ResponseEntity.ok(detalle);
 	}
-	
+	*/
+	@GetMapping("/{id}")
+	public String detalle(@PathVariable Long id, Model model) {
+		
+		DetalleEstablecimientoDTO detalle = establecimientoService.detalle(id);
+		model.addAttribute("nombre",detalle.getNombre());
+		model.addAttribute("descripcion",detalle.getDescripcion());
+		model.addAttribute("direccion",detalle.getDireccion());
+		model.addAttribute("telefono",detalle.getTelefono());
+		model.addAttribute("paginaInternet",detalle.getPaginaInternet());
+		model.addAttribute("tipoEstablecimiento",detalle.getTipoEstablecimiento());
+		model.addAttribute("localidad",detalle.getLocalidad());
+		return "detail";
+	}
 	@PostMapping
 	public ResponseEntity<EstablecimientoDTO> registrar(@RequestBody @Valid EstablecimientoForm establecimientoForm, 
 														UriComponentsBuilder uriComponentsBuilder) {

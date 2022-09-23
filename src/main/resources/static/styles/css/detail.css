@@ -1,0 +1,23 @@
+.card {
+  width: 50%;
+  margin: 0 auto;
+}
+
+.nombre-establecimiento {
+  text-align: center;
+  padding: 2rem;
+}
+
+.carousel-fotos {
+  width: 80%;
+  margin: 0 auto;
+}
+.w-100 {
+  width: 80vw !important;
+  height: 50vw;
+  object-fit: contain;
+}
+
+.descripcion {
+  padding-bottom: 2rem;
+}

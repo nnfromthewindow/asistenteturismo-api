@@ -7,10 +7,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @RequestMapping("/edit")
-public class EditController {
+public class DetalleController {
 
 	@GetMapping
-	public String cargaLogin(Model model) {
+	public String cargaDetalle(Model model) {
 		
 		return"edit";
 	}
