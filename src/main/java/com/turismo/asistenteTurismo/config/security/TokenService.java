@@ -24,12 +24,6 @@ public class TokenService {
 	
 	@Value("${asistenteTurismo.jwt.expirationTime}")
 	private Long expirationTime;
-	
-	@Value("${asistenteTurismo.jwt.secret}")
-	private String secret;
-	
-	@Value("${asistenteTurismo.jwt.issuer}")
-	private String issuer;
 
 	Key key = Keys.secretKeyFor(SignatureAlgorithm.HS256);
 
