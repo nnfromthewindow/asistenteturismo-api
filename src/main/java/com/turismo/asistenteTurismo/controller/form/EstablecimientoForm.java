@@ -17,14 +17,14 @@ public class EstablecimientoForm {
 	private String descripcion;
 	@NotBlank
 	private String direccion;
-	@NotBlank
+	
 	private Integer telefono;
 	
 	private String paginaInternet;
-	@NotBlank
+	
 	@Enumerated(EnumType.STRING)
 	private TipoEstablecimiento tipoEstablecimiento;
-	@NotBlank
+	
 	@Enumerated(EnumType.STRING)
 	private Localidad localidad;
 
