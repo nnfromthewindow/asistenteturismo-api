@@ -18,7 +18,7 @@ public class EstablecimientoForm {
 	@NotBlank
 	private String direccion;
 	
-	private Integer telefono;
+	private Long telefono;
 	
 	private String paginaInternet;
 	
@@ -58,11 +58,11 @@ public class EstablecimientoForm {
 		this.direccion = direccion;
 	}
 
-	public Integer getTelefono() {
+	public Long getTelefono() {
 		return telefono;
 	}
 
-	public void setTelefono(Integer telefono) {
+	public void setTelefono(Long telefono) {
 		this.telefono = telefono;
 	}
 

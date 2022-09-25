@@ -28,7 +28,7 @@ public class Establecimiento {
 	private String direccion;
 	
 	@NotNull
-	private Integer telefono;
+	private Long telefono;
 	
 	private String paginaInternet;
 	
@@ -52,7 +52,7 @@ public class Establecimiento {
 	
 	
 
-	public Establecimiento(String nombre, String descripcion, String direccion, Integer telefono,
+	public Establecimiento(String nombre, String descripcion, String direccion, Long telefono,
 			String paginaInternet, TipoEstablecimiento tipoEstablecimiento,
 			 Localidad localidad, String foto1, String foto2, String foto3  ) {
 		
@@ -102,11 +102,11 @@ public class Establecimiento {
 		this.direccion = direccion;
 	}
 
-	public Integer getTelefono() {
+	public Long getTelefono() {
 		return telefono;
 	}
 
-	public void setTelefono(Integer telefono) {
+	public void setTelefono(Long telefono) {
 		this.telefono = telefono;
 	}
 

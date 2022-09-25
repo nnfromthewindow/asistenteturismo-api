@@ -13,7 +13,7 @@ public class ActualizaEstablecimientoForm {
 	
 	private String direccion;
 	
-	private Integer telefono;
+	private Long telefono;
 	
 	private String paginaInternet;
 	
@@ -53,11 +53,11 @@ public class ActualizaEstablecimientoForm {
 		this.direccion = direccion;
 	}
 
-	public Integer getTelefono() {
+	public Long getTelefono() {
 		return telefono;
 	}
 
-	public void setTelefono(Integer telefono) {
+	public void setTelefono(Long telefono) {
 		this.telefono = telefono;
 	}
 

@@ -16,7 +16,7 @@ public class EstablecimientoDTO {
 	
 	private String direccion;
 	
-	private Integer telefono;
+	private Long telefono;
 	
 	private String paginaInternet;
 	
@@ -63,7 +63,7 @@ public class EstablecimientoDTO {
 		return direccion;
 	}
 
-	public Integer getTelefono() {
+	public Long getTelefono() {
 		return telefono;
 	}
 
