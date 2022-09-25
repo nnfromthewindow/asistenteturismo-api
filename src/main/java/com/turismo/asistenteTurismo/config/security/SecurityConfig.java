@@ -40,7 +40,7 @@ public class SecurityConfig {
         return (web) -> web.ignoring().antMatchers("/**/*.js", "/**/*.css", "/**/*.png", "/**/*.jpg", "/h2-console/**","/v3/api-docs",
 				"/v2/api-docs",
 				"/swagger-resources/**", 
-				"/swagger-ui/**");
+				"/swagger-ui/**", "/actuator/**");
     }
     
     @Bean

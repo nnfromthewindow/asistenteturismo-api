@@ -47,31 +47,26 @@ public class EstablecimientoController {
 
 		return ResponseEntity.ok(establecimientoService.listado(nombre, pageable));
 	}
-/*
-	@GetMapping("/{id}")
-	public ResponseEntity<DetalleEstablecimientoDTO> detalle(@PathVariable Long id) {
-		
-		
-		DetalleEstablecimientoDTO detalle = establecimientoService.detalle(id);
-		
-		return ResponseEntity.ok(detalle);
-	}
-	*/
+
 	@GetMapping("/{id}")
 	public String detalle(@PathVariable Long id, Model model) {
-		
-		DetalleEstablecimientoDTO detalle = establecimientoService.detalle(id);
-		model.addAttribute("nombre",detalle.getNombre());
-		model.addAttribute("descripcion",detalle.getDescripcion());
-		model.addAttribute("direccion",detalle.getDireccion());
-		model.addAttribute("telefono",detalle.getTelefono());
-		model.addAttribute("paginaInternet",detalle.getPaginaInternet());
-		model.addAttribute("tipoEstablecimiento",detalle.getTipoEstablecimiento().toString());
-		model.addAttribute("localidad",detalle.getLocalidad().toString());
-		model.addAttribute("foto1",detalle.getFoto1());
-		model.addAttribute("foto2",detalle.getFoto2());
-		model.addAttribute("foto3",detalle.getFoto3());
-		return "detail";
+		try {
+			DetalleEstablecimientoDTO detalle = establecimientoService.detalle(id);
+			model.addAttribute("nombre",detalle.getNombre());
+			model.addAttribute("descripcion",detalle.getDescripcion());
+			model.addAttribute("direccion",detalle.getDireccion());
+			model.addAttribute("telefono",detalle.getTelefono());
+			model.addAttribute("paginaInternet",detalle.getPaginaInternet());
+			model.addAttribute("tipoEstablecimiento",detalle.getTipoEstablecimiento().toString());
+			model.addAttribute("localidad",detalle.getLocalidad().toString());
+			model.addAttribute("foto1",detalle.getFoto1());
+			model.addAttribute("foto2",detalle.getFoto2());
+			model.addAttribute("foto3",detalle.getFoto3());
+			return "detail";
+		} catch (Exception e) {
+			return "redirect:/establecimiento";
+		}
+	
 	}
 	@PostMapping
 	public ResponseEntity<EstablecimientoDTO> registrar(@RequestBody @Valid EstablecimientoForm establecimientoForm, 
